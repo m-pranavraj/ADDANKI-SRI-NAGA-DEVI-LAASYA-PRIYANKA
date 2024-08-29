@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headache Relief</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-image: url('photo_6233277430026584031_y.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            height: 100vh;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: hidden; /* Prevent body scroll, container will scroll */
+            position: relative;
+        }
+
+        /* Adding a semi-transparent overlay */
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* 40% opacity */
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            width: 100%;
+            height: 90vh; /* Adjust height for scrolling within container */
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust container background opacity */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+
+        h1 {
+            color: #e91e63;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p, h2, h3 {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 315px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 2px solid #e91e63;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button {
+            margin-top: 30px;
+            padding: 15px 25px;
+            background-color: #e91e63;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #d81b60;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background overlay for reduced opacity -->
+    <div class="background-overlay"></div>
+
+    <div class="container">
+        <h1>Headache Relief</h1>
+        <p>Find relief from headaches with these relaxing exercises, soothing videos, and helpful tips.</p>
+
+        <!-- Embedded YouTube Videos -->
+        <iframe src="https://www.youtube.com/embed/0NX1N6r17IY?si=PkAoBSL0LngkHqk7" allowfullscreen></iframe>
+        <p>This video provides guided techniques to help relieve headache pain and tension.</p>
+
+        <iframe src="https://www.youtube.com/embed/cytJLvf-eVs" allowfullscreen></iframe>
+        <p>Yoga and meditation techniques for headache relief.</p>
+
+        <iframe src="https://www.youtube.com/embed/T_HElxAskxg?si=JMVW4H5xgdp8yx4g" allowfullscreen></iframe>
+        <p>Stretching exercises to relieve neck tension and headaches.</p>
+
+        <iframe src="https://www.youtube.com/embed/9GKRQ-mkouA?si=dJRT3d2MqwO9zvFK" allowfullscreen></iframe>
+        <p>Relaxing music to soothe headaches and stress.</p>
+
+        <iframe src="https://www.youtube.com/embed/y0sF5xhGreA?si=QeJpMlGh2ONrnkaz" allowfullscreen></iframe>
+        <p>Breathing exercises to help alleviate headaches.</p>
+
+        <iframe src="https://www.youtube.com/embed/9vGaD3P4CxE?si=QB7io4GVFcfPQ_N-" allowfullscreen></iframe>
+        <p>Massage techniques for headache and migraine relief.</p>
+
+        <!-- Include a button to navigate back to the homepage -->
+        <button class="back-button" onclick="goBack()">Back to Homepage</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "homepage.html"; // Adjust this link to your homepage
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Period Pain Relief</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('photo_6233277430026584030_y.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Increased opacity for better readability */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            overflow-y: auto; /* Ensure vertical scrolling */
+            min-height: calc(100vh - 40px); /* Adjust height to fit within the viewport */
+        }
+        
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        p, h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        iframe, audio {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        iframe {
+            height: 400px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 2px solid #e91e63;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            display: block;
+        }
+        
+        .back-button {
+            margin-top: 30px;
+            padding: 15px 25px;
+            background-color: #e91e63;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: block;
+            width: 220px;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: #d81b60;
+        }
+        
+        .journal {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .journal textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        
+        .journal button {
+            padding: 12px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .journal button:hover {
+            background-color: #45a049;
+        }
+        
+        .breathing-exercise, .meditation, .soothing-music {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Increased opacity for readability */
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .breathing-exercise button {
+            padding: 12px;
+            background-color: #009688;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .breathing-exercise button:hover {
+            background-color: #00796b;
+        }
+        
+        .meditation iframe {
+            height: 315px;
+            margin-bottom: 10px;
+        }
+        
+        .soothing-music audio {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Period Pain Relief</h1>
+        
+        <p>Period pain can be tough, but this page is designed to help you manage and relieve the discomfort with interactive exercises, soothing music, and more.</p>
+        
+        <!-- Guided Breathing Exercise -->
+        <div class="breathing-exercise">
+            <h2>Guided Breathing Exercise</h2>
+            <h3>Follow the inhale-exhale pattern to relax and ease your discomfort</h3>
+            <button onclick="startBreathing()">Start Breathing Exercise</button>
+            <div id="breathingPattern" style="margin-top: 20px; font-size: 24px; color: #555;"></div>
+        </div>
+
+        <!-- Video 1 -->
+        <iframe src="https://www.youtube.com/embed/FnvoU0-wcy0?si=1y7V6qSY0P_cLOkK" allowfullscreen></iframe>
+        <p>This video provides guided stretches and exercises specifically designed to relieve period pain and tension in the lower abdomen and back.</p>
+
+        <!-- Video 2 -->
+        <iframe src="https://www.youtube.com/embed/2X78NWuRfJU" allowfullscreen></iframe>
+        <p>Here, you'll find additional tips and techniques to manage period pain naturally, with a focus on relaxation and breathing exercises.</p>
+        
+        <!-- Heat Application Advice -->
+        <h2>Heat Application for Pain Relief</h2>
+        <p>Applying heat to your lower abdomen can be an effective way to relieve period pain. Use a heating pad or warm water bottle for 15-20 minutes at a time.</p>
+        <img src="images.jpeg" alt="Heat Application" style="width: 80%; border-radius: 8px; display: block; margin: 0 auto;">
+
+        <!-- Heat Pack Video -->
+        <h2>How to Make a Homemade Heat Pack</h2>
+        <p>Learn how to make your own heat pack to help with period pain relief. Follow the link below for detailed instructions:</p>
+        <a href="https://www.spine-health.com/video/video-how-make-homemade-heat-pack" target="_blank">
+            <img src="https://www.spine-health.com/sites/default/files/styles/article_image/public/article_images/how-to-make-homemade-heat-pack_0.jpg" alt="How to Make a Homemade Heat Pack" style="width: 80%; border-radius: 8px; display: block; margin: 0 auto;">
+        </a>
+
+        <!-- Pain Journal -->
+        <div class="journal">
+            <h2>Pain Journal</h2>
+            <p>Track your pain levels and feelings during your period. Your entries will be saved locally on your device until you close the webpage.</p>
+            <textarea id="journalEntry" placeholder="Write your thoughts here..."></textarea>
+            <button onclick="saveJournal()">Save Entry</button>
+            <button onclick="deleteJournalEntries()">Delete All Entries</button>
+            <h3>Previous Entries</h3>
+            <div id="journalEntries"></div>
+        </div>
+
+        <button class="back-button" onclick="goBack()">Back to Homepage</button>
+    </div>
+
+    <script>
+        function goBack() {
+            window.location.href = "homepage.html";
+        }
+
+        // Guided Breathing Exercise
+        function startBreathing() {
+            const breathingPattern = document.getElementById('breathingPattern');
+            let steps = ['Inhale', 'Hold', 'Exhale', 'Hold'];
+            let currentStep = 0;
+
+            breathingPattern.innerHTML = steps[currentStep];
+            currentStep++;
+
+            const breathingInterval = setInterval(() => {
+                breathingPattern.innerHTML = steps[currentStep % steps.length];
+                currentStep++;
+            }, 4000); // Change step every 4 seconds
+
+            setTimeout(() => clearInterval(breathingInterval), 16000); // Stop after 16 seconds
+        }
+
+        // Pain Journal functionality
+        function saveJournal() {
+            const entry = document.getElementById('journalEntry').value;
+            if (entry) {
+                let entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+                entries.push(entry);
+                localStorage.setItem('journalEntries', JSON.stringify(entries));
+                displayJournalEntries();
+                document.getElementById('journalEntry').value = '';
+            }
+        }
+
+        function deleteJournalEntries() {
+            localStorage.removeItem('journalEntries');
+            displayJournalEntries();
+        }
+
+        function displayJournalEntries() {
+            const entries = JSON.parse(localStorage.getItem('journalEntries')) || [];
+            const journalEntriesDiv = document.getElementById('journalEntries');
+            journalEntriesDiv.innerHTML = entries.map(entry => `<p>${entry}</p>`).join('');
+        }
+
+        // Display journal entries on page load
+        document.addEventListener('DOMContentLoaded', displayJournalEntries);
+    </script>
+</body>
+</html>

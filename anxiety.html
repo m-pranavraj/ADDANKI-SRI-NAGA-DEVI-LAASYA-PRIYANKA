@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anxiety Relief</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('photo_6233277430026584029_y.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            overflow-y: scroll;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            margin: 40px auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .activity {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(145deg, #4caf50, #81c784);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .activity:hover {
+            transform: scale(1.05);
+            background: linear-gradient(145deg, #81c784, #4caf50);
+        }
+        .activity h2 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .activity p {
+            color: #ffffff;
+        }
+        .activity-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .activity-button:hover {
+            background-color: #4caf50;
+            color: #ffffff;
+        }
+        iframe {
+            width: 100%;
+            height: 315px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        iframe:hover {
+            transform: scale(1.02);
+        }
+        .quote-box {
+            background-color: #f5f5f5;
+            font-style: italic;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        .quote-box:hover {
+            transform: scale(1.02);
+        }
+        .quote-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .quote-button:hover {
+            background-color: #4caf50;
+            color: #ffffff;
+        }
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .back-button:hover {
+            background-color: #d32f2f;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Anxiety Relief</h1>
+        
+        <!-- Activity Buttons -->
+        <div class="activity">
+            <h2>Mindful Doodling</h2>
+            <p>Draw something that makes you feel calm...</p>
+            <button class="activity-button" onclick="window.location.href='mindful_doodling.html'">Start Doodling</button>
+        </div>
+
+        <div class="activity">
+            <h2>Anxiety Monster Tamer</h2>
+            <p>Face off against "anxiety monsters" by using relaxation techniques to calm them down.</p>
+            <button class="activity-button" onclick="window.location.href='anxiety_monster_tamer.html'">Tame Your Monsters</button>
+        </div>
+
+        <!-- Calming Videos -->
+        <p>Watch these calming videos:</p>
+        <iframe src="https://www.youtube.com/embed/VJ3u6zBcVSA?si=_7EeRZBOGg--Rghd" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/DRFHklnN-SM?si=5rsEmg4joZpg1zXT" allowfullscreen></iframe>
+
+        <!-- Quotes Section -->
+        <div class="quote-box">
+            <p id="randomQuote">"You are stronger than you think."</p>
+            <button class="quote-button" onclick="generateQuote()">New Quote</button>
+        </div>
+
+        <button class="back-button" onclick="window.location.href='index.html'">Back to Homepage</button>
+    </div>
+
+    <script>
+        function generateQuote() {
+            const quotes = [
+                "You are stronger than you think.",
+                "This too shall pass.",
+                "Breathe in peace, exhale worry.",
+                "You have the power to create change.",
+                "Small steps lead to big progress.",
+                "Let go of what you cannot change.",
+                "Focus on the present moment.",
+                "Your mind is a powerful tool.",
+                "Peace begins with a smile.",
+                "You are enough just as you are."
+            ];
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById('randomQuote').textContent = quotes[randomIndex];
+            document.getElementById('randomQuote').style.opacity = 0;
+            setTimeout(() => document.getElementById('randomQuote').style.opacity = 1, 200);
+        }
+    </script>
+</body>
+</html>

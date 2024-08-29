@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calm the Monster</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e7f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 900px;
+        }
+        .monster {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 20px auto;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            background-image: url('360_F_554696706_YtzDBXEznDQm6nlIwiM2qL3qKW7mHRgT.jpg'); /* Single monster image */
+            animation: breathe 2s infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .monster.calm {
+            animation: calm 1s ease-in-out;
+        }
+        @keyframes calm {
+            0% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .monster.shout {
+            animation: shout 1s ease-in-out;
+        }
+        @keyframes shout {
+            0% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .quote-input {
+            margin: 20px 0;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .score {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .timer {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .messages {
+            margin-top: 20px;
+        }
+        .message {
+            font-size: 18px;
+            margin: 5px 0;
+            color: #4caf50;
+        }
+        .customization {
+            margin-top: 20px;
+        }
+        .quote-dropdown {
+            margin: 20px 0;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Calm the Monster</h1>
+        <div class="monster" id="monster"></div>
+
+        <select id="quoteDropdown" class="quote-dropdown">
+            <!-- Options will be populated dynamically -->
+        </select>
+        <button class="button" onclick="applyQuote()">Calm Monster with Selected Quote</button>
+
+        <input type="text" id="quoteInput" class="quote-input" placeholder="Type a positive quote or affirmation here...">
+        <button class="button" onclick="checkQuote()">Submit</button>
+
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="timer">Time Left: <span id="timer">60</span> seconds</div>
+        <div class="messages" id="messages"></div>
+
+        <div class="customization">
+            <h3>Add Your Own Quote</h3>
+            <input type="text" id="customQuote" class="quote-input" placeholder="Enter your own quote...">
+            <button class="button" onclick="addCustomQuote()">Add Quote</button>
+        </div>
+    </div>
+
+    <script>
+        const defaultQuotes = [
+            "I am strong and capable.",
+            "I choose to be positive.",
+            "Every day is a new beginning.",
+            "I am in control of my feelings.",
+            "I am worthy of love and happiness.",
+            "I can handle whatever comes my way.",
+            "I am at peace with myself.",
+            "I am grateful for the little things.",
+            "I am resilient and brave.",
+            "I trust myself and my decisions."
+        ];
+
+        let userQuotes = [];
+        let score = 0;
+        let timerValue = 60;
+        let gameTimer;
+        let currentAudio = null;
+        const scoreElement = document.getElementById('score');
+        const timerElement = document.getElementById('timer');
+        const messagesElement = document.getElementById('messages');
+        const quoteDropdown = document.getElementById('quoteDropdown');
+        const monster = document.getElementById('monster');
+
+        // Populate the quote dropdown
+        function populateDropdown() {
+            defaultQuotes.forEach(quote => {
+                const option = document.createElement('option');
+                option.value = quote;
+                option.textContent = quote;
+                quoteDropdown.appendChild(option);
+            });
+        }
+
+        function startGame() {
+            score = 0;
+            scoreElement.textContent = score;
+            timerValue = 60;
+            timerElement.textContent = timerValue;
+            gameTimer = setInterval(updateTimer, 1000);
+            messagesElement.innerHTML = '';
+            monster.className = 'monster'; // Reset animations
+        }
+
+        function updateTimer() {
+            if (timerValue <= 0) {
+                clearInterval(gameTimer);
+                alert('Time is up! Your score: ' + score);
+                return;
+            }
+            timerValue--;
+            timerElement.textContent = timerValue;
+        }
+
+        function checkQuote() {
+            const input = document.getElementById('quoteInput').value.trim();
+            const allQuotes = [...defaultQuotes, ...userQuotes];
+
+            if (allQuotes.includes(input)) {
+                score += 10;
+                scoreElement.textContent = score;
+                messagesElement.innerHTML = '<div class="message">Good job! The monster is calming down...</div>';
+                monster.classList.add('calm');
+                setTimeout(() => monster.classList.remove('calm'), 1000);
+                playSound('heavy-breathing-14431.mp3'); // Replace with your calming sound
+            } else {
+                messagesElement.innerHTML = '<div class="message">Try again! The monster is not calm yet.</div>';
+                monster.classList.add('shout');
+                setTimeout(() => monster.classList.remove('shout'), 1000);
+                playSound('monster-roars-177261.mp3'); // Replace with your shouting sound
+            }
+            document.getElementById('quoteInput').value = '';
+        }
+
+        function applyQuote() {
+            const selectedQuote = quoteDropdown.value;
+            document.getElementById('quoteInput').value = selectedQuote;
+            checkQuote();
+        }
+
+        function playSound(file) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio(file);
+            currentAudio.play();
+        }
+
+        function addCustomQuote() {
+            const customQuote = document.getElementById('customQuote').value.trim();
+            if (customQuote) {
+                userQuotes.push(customQuote);
+                document.getElementById('customQuote').value = '';
+                messagesElement.innerHTML = '<div class="message">Custom quote added!</div>';
+            }
+        }
+
+        // Initialize the game and populate the dropdown
+        window.onload = () => {
+            startGame();
+            populateDropdown();
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binaural Beats & Memory Match Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('photo_6233277430026584030_y.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.7); /* Reduced opacity to 0.7 */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow-y: auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #4caf50;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 100px;
+            cursor: pointer;
+            position: relative;
+            transform: scale(1);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card.flipped .front-face {
+            transform: rotateY(0);
+        }
+        .card.flipped .back-face {
+            transform: rotateY(180deg);
+        }
+        .front-face, .back-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+        }
+        .front-face {
+            background-color: #ffffff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            transform: rotateY(180deg);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .back-face {
+            background-color: #4caf50;
+            transform: rotateY(0);
+        }
+        #score-board {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        #restart-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff5722;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #restart-button:hover {
+            background-color: #e64a19;
+        }
+        iframe {
+            width: 100%;
+            height: 315px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>40Hz Binaural Beats & Memory Match Game</h1>
+        <p>Enhance your concentration with 40Hz binaural beats, then test your memory skills with our interactive Memory Match game. This combination is designed to help you focus better and keep your mind sharp.</p>
+        
+        <!-- Embed YouTube Video -->
+        <iframe src="https://www.youtube.com/embed/1_G60OdEzXs" allowfullscreen></iframe>
+        
+        <div id="game-board"></div>
+        <div id="score-board">
+            <p>Moves: <span id="move-counter">0</span></p>
+            <p>Time: <span id="timer">0</span> seconds</p>
+        </div>
+        <button id="restart-button" onclick="startGame()">Restart Game</button>
+    </div>
+
+    <script>
+        const gameBoard = document.getElementById('game-board');
+        const moveCounter = document.getElementById('move-counter');
+        const timerElement = document.getElementById('timer');
+        let cards = [];
+        let flippedCards = [];
+        let moves = 0;
+        let timer;
+        let timeElapsed = 0;
+
+        const icons = ['🍎', '🍌', '🍇', '🍓', '🍒', '🍍', '🍉', '🍋'];
+        const doubledIcons = [...icons, ...icons];
+
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function createCard(icon) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+                <div class="front-face">${icon}</div>
+                <div class="back-face"></div>
+            `;
+            card.addEventListener('click', flipCard);
+            return card;
+        }
+
+        function startGame() {
+            gameBoard.innerHTML = '';
+            cards = shuffle(doubledIcons).map(icon => createCard(icon));
+            cards.forEach(card => gameBoard.appendChild(card));
+            flippedCards = [];
+            moves = 0;
+            moveCounter.textContent = moves;
+            timeElapsed = 0;
+            clearInterval(timer);
+            timer = setInterval(() => {
+                timeElapsed++;
+                timerElement.textContent = timeElapsed;
+            }, 1000);
+        }
+
+        function flipCard() {
+            if (this.classList.contains('flipped') || flippedCards.length === 2) return;
+
+            this.classList.add('flipped');
+            flippedCards.push(this);
+
+            if (flippedCards.length === 2) {
+                moves++;
+                moveCounter.textContent = moves;
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const [firstCard, secondCard] = flippedCards;
+            if (firstCard.innerHTML === secondCard.innerHTML) {
+                flippedCards = [];
+                checkWin();
+            } else {
+                setTimeout(() => {
+                    firstCard.classList.remove('flipped');
+                    secondCard.classList.remove('flipped');
+                    flippedCards = [];
+                }, 1000);
+            }
+        }
+
+        function checkWin() {
+            if (document.querySelectorAll('.flipped').length === cards.length) {
+                clearInterval(timer);
+                setTimeout(() => alert(`Congratulations! You won in ${moves} moves and ${timeElapsed} seconds.`), 500);
+            }
+        }
+
+        startGame();
+    </script>
+
+</body>
+</html>

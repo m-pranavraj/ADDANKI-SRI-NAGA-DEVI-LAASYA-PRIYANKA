@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindful Doodling Draw Random Mind Arts Scribble as You Wish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('istockphoto-498309616-612x612.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            overflow-y: scroll;
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        .controls, .guide {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .controls {
+            background-color: #e0f7fa;
+        }
+        .guide {
+            background-color: #f5f5f5;
+            font-style: italic;
+        }
+        canvas {
+            border: 1px solid #cccccc;
+            background-image: url('your-canvas-background.jpg'); /* Replace with your image URL */
+            background-size: cover;
+            margin-bottom: 20px;
+        }
+        .button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Mindful Doodling</h1>
+        <p>Choose a drawing guide to start doodling:</p>
+
+        <div class="guide">
+            <h2>Mandala Drawing Guide</h2>
+            <p>1. Draw a large circle in the center.</p>
+            <p>2. Add concentric circles inside.</p>
+            <p>3. Create symmetrical patterns between circles.</p>
+            <p>4. Color using calming colors like blue and green.</p>
+        </div>
+
+        <div class="guide">
+            <h2>Zen Doodle Guide</h2>
+            <p>1. Start with random shapes like circles and lines.</p>
+            <p>2. Fill shapes with repetitive patterns.</p>
+            <p>3. Add layers of patterns for depth.</p>
+            <p>4. Let your hand move freely and focus on the process.</p>
+        </div>
+
+        <div class="guide">
+            <h2>Nature-Inspired Drawing Guide</h2>
+            <p>1. Draw basic shapes representing nature (e.g., leaves, flowers).</p>
+            <p>2. Add details like veins on leaves or petals on flowers.</p>
+            <p>3. Arrange elements to form a complete scene.</p>
+            <p>4. Use natural colors like greens, browns, and blues.</p>
+        </div>
+
+        <div class="guide">
+            <h2>Geometric Patterns Guide</h2>
+            <p>1. Draw basic geometric shapes like triangles or hexagons.</p>
+            <p>2. Arrange shapes in a repeating pattern.</p>
+            <p>3. Add complexity with additional shapes or lines.</p>
+            <p>4. Use a ruler for precision and experiment with colors.</p>
+        </div>
+
+        <div class="guide">
+            <h2>Affirmation Doodle Guide</h2>
+            <p>1. Write a positive affirmation in a decorative style.</p>
+            <p>2. Surround the text with doodles or patterns.</p>
+            <p>3. Use colors and shapes to enhance the message.</p>
+        </div>
+
+        <canvas id="canvas" width="600" height="400"></canvas>
+        
+        <div class="controls">
+            <label for="color">Choose Color:</label>
+            <input type="color" id="color" value="#000000">
+            <label for="brushSize">Brush Size:</label>
+            <input type="range" id="brushSize" min="1" max="20" value="5">
+            <button class="button" onclick="clearCanvas()">Clear Canvas</button>
+            <button class="button" onclick="saveCanvas()">Save Doodle</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let drawing = false;
+        let brushColor = '#000000';
+        let brushSize = 5;
+
+        canvas.addEventListener('mousedown', (e) => {
+            drawing = true;
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX, e.offsetY);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (drawing) {
+                ctx.lineTo(e.offsetX, e.offsetY);
+                ctx.strokeStyle = brushColor;
+                ctx.lineWidth = brushSize;
+                ctx.stroke();
+            }
+        });
+
+        canvas.addEventListener('mouseup', () => {
+            drawing = false;
+            ctx.closePath();
+        });
+
+        document.getElementById('color').addEventListener('input', (e) => {
+            brushColor = e.target.value;
+        });
+
+        document.getElementById('brushSize').addEventListener('input', (e) => {
+            brushSize = e.target.value;
+        });
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function saveCanvas() {
+            const link = document.createElement('a');
+            link.download = 'doodle.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+    </script>
+</body>
+</html>
